@@ -9,15 +9,16 @@ import './App.css';
   Functions that are being passed in can use 'any', but in other cases it's
   strongly recommended NOT to use 'any' (otherwise just use Javascript)
 */
+
 interface SquareProps {
   value: string | null,
   onSquareClick: (params: any) => any
 }
 
 /*
-  Note that because we're passing an interface, references to the variables
-  we're passing through will need to be prefixed with the property variable
-  object (i.e. props.blah)
+  Note that just as if we were passing a props object, because we're passing
+  an interface, references to the variables we're passing through will need
+  to be prefixed with the property variable object (i.e. props.blah)
 */
 
 function Square(props: SquareProps): ReactElement {
@@ -94,7 +95,7 @@ export default function Game(): ReactElement {
   }
 
   const moves = history.map((squares, move) => {
-    let description;
+    let description: string;
     if (move > 0) {
       description = 'Go to move #' + move;
     } else {
@@ -120,9 +121,7 @@ export default function Game(): ReactElement {
   );
 };
 
-
-
-function calculateWinner(squares: string[]): string | undefined {
+function calculateWinner(squares: string[]): string | null {
   const lines = [
     [0, 1, 2],
     [3, 4, 5],
@@ -140,4 +139,6 @@ function calculateWinner(squares: string[]): string | undefined {
       return squares[a];
     }
   }
+
+  return null;
 }
